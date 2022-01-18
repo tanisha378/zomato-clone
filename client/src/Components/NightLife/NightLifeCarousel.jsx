@@ -46,34 +46,29 @@ function NightLifeCarousel() {
 
     const [nightLife] = useState([
       {
-        image: "https://b.zmtcdn.com/data/collections/c392056cfd7c02befe8d53f94ad2a908_1581933619.jpg?output-format=webp",
-        title:"Best of Delhi NCR",
-        places:"150 Places",
+        image: "https://b.zmtcdn.com/data/collections/bb6a35086c983af31c536a3cfe886f1b_1631616165.jpg",
+        title:"Microbreweries",
+        places:"18 Places",
       },
       {
-        image: "https://b.zmtcdn.com/data/collections/c392056cfd7c02befe8d53f94ad2a908_1581933619.jpg?output-format=webp",
-        title:"Best of Delhi NCR",
-        places:"150 Places",
+        image: "https://b.zmtcdn.com/data/collections/b05dc8713287671124d8408fb6198bb3_1631608443.jpg",
+        title:"Where's The Party",
+        places:"30 Places",
       },
       {
-        image: "https://b.zmtcdn.com/data/collections/c392056cfd7c02befe8d53f94ad2a908_1581933619.jpg?output-format=webp",
-        title:"Best of Delhi NCR",
-        places:"150 Places",
+        image: "https://b.zmtcdn.com/data/collections/4e1df9d915b25858fbc9acd2154d1dff_1631511179.jpg",
+        title:"Bar-gain",
+        places:"18 Places",
       },
       {
-        image: "https://b.zmtcdn.com/data/collections/c392056cfd7c02befe8d53f94ad2a908_1581933619.jpg?output-format=webp",
-        title:"Best of Delhi NCR",
-        places:"150 Places",
+        image: "https://im.whatshot.in/img/2020/Aug/13172-d-1597168183.jpg",
+        title:"Rooftop Cafes",
+        places:"15 Places",
       },
       {
-        image: "https://b.zmtcdn.com/data/collections/c392056cfd7c02befe8d53f94ad2a908_1581933619.jpg?output-format=webp",
-        title:"Best of Delhi NCR",
-        places:"150 Places",
-      },
-      {
-        image: "https://b.zmtcdn.com/data/collections/c392056cfd7c02befe8d53f94ad2a908_1581933619.jpg?output-format=webp",
-        title:"Best of Delhi NCR",
-        places:"150 Places",
+        image: "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/190322-ham-sandwich-horizontal-1553721016.png",
+        title:"On a Budget",
+        places:"23 Places",
       },
     ]);
 
