@@ -1,40 +1,47 @@
-import { Dialog, Transition } from '@headlessui/react'
-import { Fragment, useState } from 'react'
-import {FcGoogle} from 'react-icons/fc'
+import { Dialog, Transition } from "@headlessui/react";
+import { Fragment, useState } from "react";
+import { FcGoogle } from "react-icons/fc";
 
-export default function SignIn( isSign, setIsSign) {
-    const [userData, setUserData] = useState({
-        email: "",
-        password:"",
-    })
+// redux
+import { useDispatch } from "react-redux";
+import { signIn } from "../../redux/reducers/auth/auth.action";
 
-    const handleChange = (e) => {
-        setUserData((prev) => ({...prev, [e.target.id]: e.target.value }))
-    }
+function Signin({ isOpen, setIsOpen }) {
+  const [userData, setUserData] = useState({
+    email: "",
+    password: "",
+  });
 
-    const closeModal = () => {
-    setIsSign(false)
-  }
+  const dispatch = useDispatch();
 
-  const googleSignIn = () => (
-    window.location.href = "http://localhost:4000/auth/google"
-)
+  const handleChange = (e) => {
+    setUserData((prev) => ({ ...prev, [e.target.id]: e.target.value }));
+  };
 
+  const closeModal = () => {
+    setIsOpen(false);
+  };
+
+  const submit = () => {
+    dispatch(signIn(userData));
+    setUserData({ email: "", password: "" });
+    closeModal();
+  };
+
+  const googleSignIn = () =>
+    (window.location.href = "http://localhost:5000/auth/google");
 
   return (
     <>
-
-      <Transition appear show={isSign} as={Fragment}>
-      
-      
+      <Transition appear show={isOpen} as={Fragment}>
         <Dialog
           as="div"
           className="fixed inset-0 z-10 overflow-y-auto"
           onClose={closeModal}
+          style={{ backgroundColor: "rgba(0, 0, 0, 0.53)" }}
         >
           <div className="min-h-screen px-4 text-center">
             <Transition.Child
-            
               as={Fragment}
               enter="ease-out duration-300"
               enterFrom="opacity-0"
@@ -66,40 +73,45 @@ export default function SignIn( isSign, setIsSign) {
                 <Dialog.Title
                   as="h3"
                   className="text-lg font-medium leading-6 text-gray-900"
-                >
-                </Dialog.Title>
-                <div className='mt-2 flex flex-col gap-3 w-full'>
-                    <button className='py-2 justify-center rounded-lg flex items-center gap-2 w-full border border-gray-400 bg-white text-gray-700 hover:bg-gray-100' onClick={googleSignIn}>
-                        Sign In With Google <FcGoogle/>
-                    </button>
+                ></Dialog.Title>
+                <div className="mt-2 flex flex-col gap-3 w-full">
+                  <button
+                    className="py-2 justify-center rounded-lg flex items-center gap-2 w-full border border-gray-400 bg-white text-gray-700 hover:bg-gray-100"
+                    onClick={googleSignIn}
+                  >
+                    Sign In With Google <FcGoogle />
+                  </button>
 
-                    <form className='flex flex-col gap-2'>
-                      <div className='w-full flex flex-col gap-2'>
-                          <label htmlFor='email'>Email</label>
-                          <input
-                             type='text'
-                             id='email'
-                             value={userData.email}
-                             onChange={handleChange}
-                             placeholder='user@email.com'
-                             className='w-full border border-gray-400 px-3 py-2 rounded-lg focus:bg-zomato-400'
-                           />  
-                      </div>
-                      <div className='w-full flex flex-col gap-2'>
-                          <label htmlFor='password'>Password</label>
-                          <input
-                             type='password'
-                             id='password'
-                             value={userData.password}
-                             onChange={handleChange}
-                             placeholder='*******'
-                             className='w-full border border-gray-400 px-3 py-2 rounded-lg focus:bg-zomato-400'
-                           />  
-                      </div>
-                      <div className='w-full text-center bg-zomato-400 text-white py-2 rounded-lg' onClick={closeModal}>
-                          SignIn
-                      </div>
-                    </form>    
+                  <form className="flex flex-col gap-2">
+                    <div className="w-full flex flex-col gap-2">
+                      <label htmlFor="email">Email</label>
+                      <input
+                        type="text"
+                        id="email"
+                        value={userData.email}
+                        onChange={handleChange}
+                        placeholder="user@email.com"
+                        className="w-full border border-gray-400 px-3 py-2 rounded-lg focus:border-zomato-400"
+                      />
+                    </div>
+                    <div className="w-full flex flex-col gap-2 mb-3">
+                      <label htmlFor="password">Password</label>
+                      <input
+                        type="password"
+                        id="password"
+                        value={userData.password}
+                        onChange={handleChange}
+                        placeholder="**********"
+                        className="w-full border border-gray-400 px-3 py-2 rounded-lg focus:border-zomato-400"
+                      />
+                    </div>
+                    <div
+                      className="w-full text-center bg-zomato-400 text-white py-2 rounded-lg"
+                      onClick={submit}
+                    >
+                      Sign In
+                    </div>
+                  </form>
                 </div>
               </div>
             </Transition.Child>
@@ -107,5 +119,7 @@ export default function SignIn( isSign, setIsSign) {
         </Dialog>
       </Transition>
     </>
-  )
+  );
 }
+
+export default Signin;

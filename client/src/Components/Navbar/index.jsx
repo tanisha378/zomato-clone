@@ -8,9 +8,12 @@ import {RiSearch2Line} from "react-icons/ri";
 import SignIn from "../Auth/SignIn";
 import SignUp from "../Auth/SignUp";
 
+//redux
+import {useSelector} from 'react-redux';
+
 function MobileNav({SignIn, SignUp}) {
     const [isDropDownOpen, setIsDropDownOpen] = useState(false);
-    const [user, setUser] = useState({});
+    const reduxState = useSelector((globalState) => globalState.user);
     return(
         <div className='flex w-full items-center justify-between lg:hidden'>
             <div className='w-28'>
@@ -22,7 +25,7 @@ function MobileNav({SignIn, SignUp}) {
                 <button className='bg-zomato-400 text-white py-2 px-3 rounded-full'>
                     Use App
                 </button>
-                {user?.fullName ? (
+                {reduxState?.fullName ? (
                     <>
                      <div onClick={()=>setIsDropDownOpen((prev) => !prev)} className='border p-2 border-gray-300 text-zomato-400 w-20 h-20 rounded-full'>
                          <img src='https://cdn1.vectorstock.com/i/1000x1000/36/15/businessman-character-avatar-isolated-vector-12613615.jpg' 
@@ -55,7 +58,7 @@ function MobileNav({SignIn, SignUp}) {
 
 function LargeNav({SignIn, SignUp}) {
     const [isDropDownOpen, setIsDropDownOpen] = useState(false);
-    const [user, setUser] = useState({});
+    const reduxState = useSelector((globalState) => globalState.user)
     return(<>
        <div className='hidden lg:inline container px-20 mx-auto'>
            <div className='gap-4 w-full items-center justify-around flex '>
@@ -83,7 +86,7 @@ function LargeNav({SignIn, SignUp}) {
                         className='w-full focus:outline-none'/>
                    </div>
                </div>
-               {user?.fullName ? (
+               {reduxState?.fullName ?  (
                    <div className='relative w-20'>
                        <div onClick={() => setIsDropDownOpen((prev) => !prev)} className='border border-gray-300 text-zomato-400 w-full h-20 rounded-full'>
                            <img src='https://cdn1.vectorstock.com/i/1000x1000/36/15/businessman-character-avatar-isolated-vector-12613615.jpg'
@@ -123,9 +126,9 @@ function Navbar() {
     return (
         <>
      
-   { /* <SignIn isSign={openSignIn} setIsOpen={setOpenSignIn} />
-     
-      <SignUp isSign={openSignUp} setIsOpen={setOpenSignUp} /> */}
+        
+      <SignIn isOpen={openSignIn} setIsOpen={setOpenSignIn} />
+      <SignUp isOpen={openSignUp} setIsOpen={setOpenSignUp} />
 
           <nav className="p-4 flex bg-white shadow-md lg:shadow-none w-full items-center">
             <MobileNav SignIn={openSignInModal} SignUp={openSignUpModal}/>

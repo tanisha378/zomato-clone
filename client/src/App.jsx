@@ -10,6 +10,7 @@ import CheckoutLayoutHoc from "./HOC/Checkout.hoc";
 //pages
 import RestaurantPage from "./pages/RestaurantPage";
 import Checkout from "./pages/CheckoutPage";
+import GoogleAuth from "./pages/GoogleAuth";
 
 //component
 import Temp from "./Components/temp";
@@ -23,6 +24,7 @@ import Photos from "./Components/Restaurant/Photos/Photos";
 
 
 
+
 function App() {
   return (
     <>
@@ -31,6 +33,7 @@ function App() {
         </Route>
       
         <HomeLayoutHoc exact component={Temp} path="/:type"/>
+        <HomeLayoutHoc path="/google/:token" exact component={GoogleAuth}/>
         <RestaurantLayoutHoc exact component={RestaurantPage} path="/restaurant/:id"/>
         <RestaurantLayoutHoc exact component={Overview} path='/restaurant/:id/overview' />
         <RestaurantLayoutHoc exact component={OrderOnline} path='/restaurant/:id/order-online' />
